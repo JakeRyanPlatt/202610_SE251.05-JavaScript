@@ -51,8 +51,7 @@ function main()
     //player movement
     p1.move();
 
-    //ball movement
-    ball.move()
+    // (ball movement is done once later) -- removed extra ball.move()
 
     //p1 collision
     if(p1.y < 0+p1.h/2)
@@ -67,13 +66,19 @@ function main()
     //ball collision 
     if(ball.x < 0)
     {
+        // left wall: reset ball to center and restore starting velocity
         ball.x = c.width/2
-        ball.y  =c.height/2
+        ball.y = c.height/2
+        ball.vx = -2
+        ball.vy = -2
     }
     if(ball.x > c.width)
     {
-        ball.x = c.width
-        ball.vx = -ball.vx
+        // right wall: reset ball to center and restore starting velocity
+        ball.x = c.width/2
+        ball.y = c.height/2
+        ball.vx = -2
+        ball.vy = -2
     }
     if(ball.y < 0)
     {
@@ -122,28 +127,7 @@ function main()
     {
         p2.y = c.height-p2.h/2
     }
-
-    //ball collision
-    if(ball.x < 0)
-    {
-        ball.x = c.width/2
-        ball.y = c.height/2
-    }
-    if(ball.x > c.width)
-    {
-        ball.x = c.width
-        ball.vx = -ball.vx
-    }
-    if(ball.y < 0)
-    {
-        ball.y = 0
-        ball.vy = -ball.vy
-    }
-    if(ball.y > c.height)
-    {
-        ball.y = c.height
-        ball.vy = -ball.vy
-    }
+    
     //p2 with ball collision
     if(ball.collide(p2))
     {
