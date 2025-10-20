@@ -12,7 +12,7 @@ var fy = .97
 var p1 = new Box();
 p1.w = 20
 p1.h = 150
-p1.x = 0 + p1.w/2
+p1.x = 0 + p[0].w/2
 
 //p2 setup
 var p2 = new Box();
@@ -20,6 +20,9 @@ p2.w = 20
 p2.h = 150
 p2.x = c.width - p2.w/2
 p2.color = `teal`
+
+p = [p[0], p2]
+
 
 
 //ball setup
@@ -35,34 +38,40 @@ function main()
     //erases the canvas
     ctx.clearRect(0,0,c.width,c.height)
     
-    //p1 accelerates when key is pressed 
+    //p[0] accelerates when key is pressed 
     if(keys[`w`])
     {
-       p1.vy += -p1.force
+       p[0].vy += -p[0].force
     }
 
     if(keys[`s`])
     {
-        p1.vy += p1.force
+        p[0].vy += p[0].force
     }
     //applies friction
-    p1.vy *= fy
     
     //player movement
-    p1.move();
+ 
 
-    // (ball movement is done once later) -- removed extra ball.move()
-
-    //p1 collision
-    if(p1.y < 0+p1.h/2)
+    for(let i = 0; i < p.length; i++)
     {
-        p1.y = 0+p1.h/2
-    }
-    if(p1.y > c.height-p1.h/2)
-    {
-        p1.y = c.height-p1.h/2
-    }
+        p[i].vy *= fy //friction
 
+        p[i].move(); //move
+
+
+        p[i].draw() //draw players
+
+    if(p[i].y < 0+p[i].h/2)
+    {
+        p[i].y = 0+p[i].h/2
+    }
+    if(p[i].y > c.height-p[i].h/2)
+    {
+        p[i].y = c.height-p[i].h/2
+    }
+    }
+ 
     //ball collision 
     if(ball.x < 0)
     {
@@ -92,10 +101,10 @@ function main()
        
     }
 
-    //p1 with ball collision
-    if(ball.collide(p1))
+    //p[0] with ball collision
+    if(ball.collide(p[0]))
     {
-        ball.x = p1.x + p1.w/2 + ball.w/2
+        ball.x = p[0].x + p[0].w/2 + ball.w/2
         ball.vx = -ball.vx;
     }
 
@@ -109,24 +118,10 @@ function main()
         p2.vy += p2.force
     }
 
-    //applies friction
-    p2.vy *= fy
-
-    //player movement
-    p2.move();
 
    // ball movement
     ball.move()
 
-    //p2 collision
-    if(p2.y < 0+p2.h/2)
-    {
-        p2.y = 0+p2.h/2
-    }
-    if(p2.y > c.height-p2.h/2)
-    {
-        p2.y = c.height-p2.h/2
-    }
     
     //p2 with ball collision
     if(ball.collide(p2))
@@ -136,10 +131,6 @@ function main()
         ball.vx = -ball.vx;
     }
 
-
-
     //draw the objects
-    p1.draw()
     ball.draw()
-    p2.draw()
 }
