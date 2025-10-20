@@ -1,6 +1,6 @@
 class player
     {
-        constructor(this.name,this.score,this.highScore,this.pad)
+        constructor(name,score,highScore,pad)
         {
             this.name;
             this.score;

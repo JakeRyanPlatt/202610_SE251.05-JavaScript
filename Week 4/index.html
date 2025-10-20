@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Document
+    </title>
+<style>
+    .options{
+        border: 1px solid black;
+        width: 300px;
+    }
+    .hide{
+        display:none;
+    }
+    canvas{
+        border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+    <div id="p1"><button>close</button><span class="stroke"></span>
+        <div class="options">
+            <input type ="color" class = "stroke"><input type = "text"><br>
+            <input type="color" class = "fill"><input type = "text"><br>
+            <input type ="text" class ="u"><br>
+            <input type ="text" class ="d"><br>
+            <input type ="text" class ="s"><br>
+            <input type="range" min = "0" max = "255" class = "r">
+        </div>
+    </div>
+    <canvas>
+
+    </canvas width ="300" height="300"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>
