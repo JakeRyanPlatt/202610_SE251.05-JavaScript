@@ -6,6 +6,7 @@
 if(localStorage.getItem(`posts`))
 {
     var posts = JSON.parse(localStorage.getItem(`posts`));
+    console.log(posts)
     posts.forEach(value=>$(`#output`).innerHTML += value)
 }
 
@@ -35,15 +36,40 @@ $(`button`)[0].addEventListener(`click`, e=>{
     post.appendChild(check)
     post.appendChild(time)
     post.appendChild(p)
-    $(`#output`).appendChild(post)
 
-    var arr = Array.from($(`.post`)).map(value=>value.outerHTML)
+$(`#output`).appendChild(post)
+
+    let array = Array.from($(`.post`)).map(value=>value.outerHTML)
     
     localStorage.setItem(`posts`,JSON.stringify(arr))
 })
+    var array = Array.from($(`.hidden`)) 
 
 
+$(`button`)[1].addEventListener(`click`, e=>{
+  
+    array.forEach(value=>{
+        value.classList.toggle(`hidden`) 
+    })
+})
+ 
+$(`button`)[3].addEventListener(`click`, e=>{
+  
+  
+$(`button`)[4].addEventListener(`click`, e=>{
+  
+    array.forEach(value=>{
+        value(`checked`) 
+    })
+})
 
+    })
+        
+    // Some checked some not, get checked one into their own array. You dont want to whole element you want the index numbers
+    // get index, then splice that index from the main array
+    // Get all unchecked ones into their own array, delete local storage, then place unchecked ones into local storage
+
+})
 
 /*
 Function to select an element. 
@@ -58,13 +84,4 @@ function $(_element)
     let e = document.querySelectorAll(_element)
     return (e.length > 1)?e:e[0]
 }
-
-
-
-
-
-
-
-
-
 

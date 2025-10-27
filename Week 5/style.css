@@ -7,7 +7,7 @@
 }
 
 #output{
-    display:flex;
+    display:flex; /* diplay everything as a column but reverse order */
     flex-direction: column-reverse;
 }
 
