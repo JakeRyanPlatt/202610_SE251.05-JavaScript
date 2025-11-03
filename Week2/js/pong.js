@@ -27,8 +27,8 @@ var player = [];
 // create two players and give each a paddle (pad)
 player[0] = new Player();
 player[1] = new Player();
-player[0].pad = new Box();
-player[1].pad = new Box();
+player[0].pad = p1;
+player[1].pad = p2;
 
 
 //ball setup
@@ -125,6 +125,5 @@ function main()
     //draw the objects
     p1.draw()
     p2.draw()
-    
     ball.draw()
 }
