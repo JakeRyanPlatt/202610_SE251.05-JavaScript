@@ -6,7 +6,6 @@ class Box
         this.y = c.height/2
         this.w = 100
         this.h = 100
-        this.color = `hotpink`
         this.vx = 0
         this.vy = 0
         this.force = 1;
