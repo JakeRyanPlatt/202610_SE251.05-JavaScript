@@ -8,11 +8,13 @@ var timer = setInterval(main, 1000/60)
 //global friction variable
 var fy = .97
 
+const player = [0,1];
+
 //p1 setup
-var p1 = new Box();
-p1.w = 20
-p1.h = 150
-p1.x = 0 + p1.w/2
+var player1 = new Box();
+player[0].w = 20
+player[0].h = 150
+player[0].x = 0 + player1.w/2
 
 //ball setup
 var ball = new Box();
@@ -27,32 +29,43 @@ function main()
     //erases the canvas
     ctx.clearRect(0,0,c.width,c.height)
     
-    //p1 accelerates when key is pressed 
+    //player  accelerates when key is pressed 
     if(keys[`w`])
     {
-       p1.vy += -p1.force
+       player[0].vy += -player[0].force
     }
 
     if(keys[`s`])
     {
-        p1.vy += p1.force
+        player[0].vy += player[0].force
     }
+  if(keys[`keyup`])
+    {
+       player[1].vy += -player[1].force
+    }
+
+    if(keys[`keydown`])
+    {
+        player[1].vy += player[1].force
+    }
+
+
     //applies friction
-    p1.vy *= fy
+    player[0].vy *= fy
     //player movement
-    p1.move();
+    player[0].move();
 
     //ball movement
     ball.move()
 
-    //p1 collision
-    if(p1.y < 0+p1.h/2)
+    //player collision
+    if(player[0].y < 0+player[0].h/2)
     {
-        p1.y = 0+p1.h/2
+        player[0].y = 0+player[0].h/2
     }
-    if(p1.y > c.height-p1.h/2)
+    if(player[0].y > c.height-player[0].h/2)
     {
-        p1.y = c.height-p1.h/2
+        player[0].y = c.height-player[0].h/2
     }
 
     //ball collision 
@@ -79,13 +92,13 @@ function main()
     }
 
     //p1 with ball collision
-    if(ball.collide(p1))
+    if(ball.collide(player[i]))
     {
-        ball.x = p1.x + p1.w/2 + ball.w/2
+        ball.x = player[i].x + player[i].w/2 + ball.w/2
         ball.vx = -ball.vx;
     }
 
     //draw the objects
-    p1.draw()
+    player[i].draw()
     ball.draw()
 }
