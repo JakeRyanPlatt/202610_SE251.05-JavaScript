@@ -10,11 +10,18 @@ var fy = .97
 
 const player = [0,1];
 
-//p1 setup
-var player1 = new Box();
+//p0 setup
+var player[0] = new Box();
 player[0].w = 20
 player[0].h = 150
 player[0].x = 0 + player1.w/2
+
+//p1 setup
+var player[1] = new Box();
+player[1].w = 20
+player[1].h = 150
+player[1].x = c.width - player2.w/2
+
 
 //ball setup
 var ball = new Box();
