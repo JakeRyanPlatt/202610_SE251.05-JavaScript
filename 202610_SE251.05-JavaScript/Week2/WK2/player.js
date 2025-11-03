@@ -1,10 +1,10 @@
-class player
+class Player
     {
-        constructor(name,score,highScore,pad)
+        constructor(name ="",score = 0,highScore = 0,pad = null)
         {
-            this.name;
-            this.score;
-            this.highScore;
-            this.pad;
+            this.name = name;
+            this.score = score;
+            this.highScore = highScore;
+            this.pad = pad;
         }
     } 

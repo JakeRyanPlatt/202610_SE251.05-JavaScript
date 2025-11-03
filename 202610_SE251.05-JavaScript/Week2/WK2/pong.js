@@ -8,20 +8,24 @@ var timer = setInterval(main, 1000/60)
 //global friction variable
 var fy = .97
 
-//p1 setup
+
+//player1 setup
 var p1 = new Box();
 p1.w = 20
 p1.h = 150
-p1.x = 0 + p[0].w/2
+p1.x = p1.w/2
 
-//p2 setup
+//player2 setup
 var p2 = new Box();
 p2.w = 20
 p2.h = 150
 p2.x = c.width - p2.w/2
 p2.color = `teal`
 
-p = [p[0], p2]
+// create Player instances and give them a paddle (pad)
+const player = [];
+player[0] = new Player("Player 1", 0, 0, p1);
+player[1] = new Player("Player 2", 0, 0, p2);
 
 
 
@@ -41,34 +45,30 @@ function main()
     //p[0] accelerates when key is pressed 
     if(keys[`w`])
     {
-       p[0].vy += -p[0].force
+       player[0].pad.vy += -player[0].pad.force
     }
 
     if(keys[`s`])
     {
-        p[0].vy += p[0].force
+        player[0].pad.vy += player[0].pad.force
     }
-    //applies friction
-    
-    //player movement
- 
-
-    for(let i = 0; i < p.length; i++)
+   
+    for(let i = 0; i < player.length; i++)
     {
-        p[i].vy *= fy //friction
+        player[i].pad.vy *= fy //friction
 
-        p[i].move(); //move
+        player[i].pad.move(); //move
 
 
-        p[i].draw() //draw players
+        player[i].pad.draw() //draw players
 
-    if(p[i].y < 0+p[i].h/2)
+    if(player[i].pad.y < 0+player[i].pad.h/2)
     {
-        p[i].y = 0+p[i].h/2
+        player[i].pad.y = 0+player[i].pad.h/2
     }
-    if(p[i].y > c.height-p[i].h/2)
+    if(player[i].pad.y > c.height-player[i].pad.h/2)
     {
-        p[i].y = c.height-p[i].h/2
+        player[i].pad.y = c.height-player[i].pad.h/2
     }
     }
  
@@ -101,21 +101,21 @@ function main()
        
     }
 
-    //p[0] with ball collision
-    if(ball.collide(p[0]))
+    // player[0] with ball collision
+    if(ball.collide(player[0].pad))
     {
-        ball.x = p[0].x + p[0].w/2 + ball.w/2
+        ball.x = player[0].pad.x + player[0].pad.w/2 + ball.w/2
         ball.vx = -ball.vx;
     }
 
     //p2 accelerates when key is pressed]
     if(keys[`ArrowUp`])
     {
-       p2.vy += -p2.force
+       player[1].pad.vy += -player[1].pad.force
     }
     if(keys[`ArrowDown`])
     {
-        p2.vy += p2.force
+        player[1].pad.vy += player[1].pad.force
     }
 
 
@@ -123,11 +123,11 @@ function main()
     ball.move()
 
     
-    //p2 with ball collision
-    if(ball.collide(p2))
+    // player[1] with ball collision
+    if(ball.collide(player[1].pad))
     {
         // place the ball to the left of p2 and reverse X velocity
-        ball.x = p2.x - p2.w/2 - ball.w/2
+        ball.x = player[1].pad.x - player[1].pad.w/2 - ball.w/2
         ball.vx = -ball.vx;
     }
 
