@@ -10,6 +10,10 @@ if(localStorage.getItem(`posts`))
     posts.forEach(value=>$(`#output`).innerHTML += value)
 }
 
+let checkedPosts = posts.filter(post => {
+    let checkbox = posts.querySelector("input[type='checkbox']");
+});
+
 /*
     When the `Add` button is clicked:
         creates a div for a post
@@ -47,10 +51,10 @@ $(`#output`).appendChild(post)
 
 
 $(`button`)[1].addEventListener(`click`, e=>{
+    if 
+    localStorage.removeItem(`checkedPosts`);  
   
-    array.forEach(value=>{
-        value.classList.toggle(`hidden`) 
-    })
+});
 })
  
 $(`button`)[3].addEventListener(`click`, e=>{
@@ -58,18 +62,14 @@ $(`button`)[3].addEventListener(`click`, e=>{
   
 $(`button`)[4].addEventListener(`click`, e=>{
   
-    array.forEach(value=>{
-        value(`checked`) 
-    })
-})
+    
 
-    })
         
-    // Some checked some not, get checked one into their own array. You dont want to whole element you want the index numbers
-    // get index, then splice that index from the main array
-    // Get all unchecked ones into their own array, delete local storage, then place unchecked ones into local storage
+ // Some checked some not, get checked one into their own array. You dont want to whole element you want the index numbers
+// get index, then splice that index from the main array
+// Get all unchecked ones into their own array, delete local storage, then place unchecked ones into local storage
 
-})
+
 
 /*
 Function to select an element. 
