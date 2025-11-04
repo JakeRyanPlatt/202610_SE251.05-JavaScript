@@ -52,54 +52,40 @@ function main()
     //erases the canvas
     ctx.clearRect(0,0,c.width,c.height)
     
-    //player 1 accelerates when key is pressed
-    if(keys[`w`])
+    // paddle input, friction and movement (looped for both pads)
+    for (var i = 0; i < pad.length; i++)
     {
-       pad[0].vy += -pad[0].force
-    }
+        // controls: left player uses W/S, right player uses Arrow keys
+        if (i === 0)
+        {
+            if (keys['w']) { pad[i].vy += -pad[i].force; }
+            if (keys['s']) { pad[i].vy += pad[i].force; }
+        }
+        else if (i === 1)
+        {
+            if (keys['ArrowUp']) { pad[i].vy += -pad[i].force; }
+            if (keys['ArrowDown']) { pad[i].vy += pad[i].force; }
+        }
 
-    if(keys[`s`])
-    {
-        pad[0].vy += pad[0].force
+        // apply friction and move
+        pad[i].vy *= fy;
+        pad[i].move();
     }
-    //player 2 accelerates when up/down arrows are pressed
-    if(keys[`ArrowUp`])
-    {
-        pad[1].vy += -pad[1].force
-    }
-
-    if(keys[`ArrowDown`])
-    {
-        pad[1].vy += pad[1].force
-    }
-    //applies friction
-    pad[0].vy *= fy
-    pad[1].vy *= fy
-    //player movement
-    pad[0].move();
-    pad[1].move();
 
     //ball movement
     ball.move()
 
-    //pad[0] (left paddle) collision with canvas bounds
-    if(pad[0].y < 0+pad[0].h/2)
+    // paddle collision with canvas bounds (looped)
+    for (var i = 0; i < pad.length; i++)
     {
-        pad[0].y = 0+pad[0].h/2
-    }
-    if(pad[0].y > c.height-pad[0].h/2)
-    {
-        pad[0].y = c.height-pad[0].h/2
-    }
-
-    //pad[1] (right paddle) collision with canvas bounds
-    if(pad[1].y < 0+pad[1].h/2)
-    {
-        pad[1].y = 0+pad[1].h/2
-    }
-    if(pad[1].y > c.height-pad[1].h/2)
-    {
-        pad[1].y = c.height-pad[1].h/2
+        if (pad[i].y < 0 + pad[i].h/2)
+        {
+            pad[i].y = 0 + pad[i].h/2;
+        }
+        if (pad[i].y > c.height - pad[i].h/2)
+        {
+            pad[i].y = c.height - pad[i].h/2;
+        }
     }
     //ball collision 
     if(ball.x < 0)
@@ -130,23 +116,23 @@ function main()
        
     }
 
-    //left paddle collision
-    if(ball.collide(pad[0]))
+    // paddle collisions (looped)
+    for (var i = 0; i < pad.length; i++)
     {
-        ball.x = pad[0].x + pad[0].w/2 + ball.w/2
-        ball.vx = -ball.vx;
-    }
-
-    //right paddle collision (bounce off right paddle)
-    if(ball.collide(pad[1]))
-    {
-        ball.x = pad[1].x - pad[1].w/2 - ball.w/2
-        ball.vx = -ball.vx;
+        if (ball.collide(pad[i]))
+        {
+            // left paddle (i===0) should push ball to the right, right paddle to the left
+            var dir = (i === 0) ? 1 : -1;
+            ball.x = pad[i].x + dir * (pad[i].w/2 + ball.w/2);
+            ball.vx = -ball.vx;
+        }
     }
 
     //draw the objects
-    pad[0].draw()
-    pad[1].draw()
+    for (var i = 0; i < pad.length; i++)
+    {
+        pad[i].draw();
+    }
     ball.draw()
     // update onscreen score divs
     for (var i = 0; i < scoreEls.length; i++)
