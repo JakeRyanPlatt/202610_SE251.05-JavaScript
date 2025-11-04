@@ -8,6 +8,9 @@ var timer = setInterval(main, 1000/60)
 //global friction variable
 var fy = .97
 
+// NodeList that contains the two divs in the #score section
+var scoreEls = document.querySelectorAll('#score div');
+
 //p1 setup
 var p1 = new Box();
 p1.w = 20
@@ -43,9 +46,6 @@ ball.h = 20
 ball.vx = -2
 ball.vy = -2
 ball.color = `black`
-
-//score setup
-
 
 function main()
 {
@@ -92,7 +92,7 @@ function main()
         pad[0].y = c.height-pad[0].h/2
     }
 
-    //pad[1] (left paddle) collision with canvas bounds
+    //pad[1] (right paddle) collision with canvas bounds
     if(pad[1].y < 0+pad[1].h/2)
     {
         pad[1].y = 0+pad[1].h/2
@@ -148,4 +148,9 @@ function main()
     pad[0].draw()
     pad[1].draw()
     ball.draw()
+    // update onscreen score divs
+    for (var i = 0; i < scoreEls.length; i++)
+    {
+        scoreEls[i].innerText = player[i].score;
+    }
 }
