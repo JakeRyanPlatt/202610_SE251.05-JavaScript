@@ -21,7 +21,7 @@ p2.w = 20
 p2.h = 150
 p2.x = c.width - p2.w/2
 p2.color = `teal`
-
+// global player array
 var player = [];
 
 // create two players and assign their pad to the existing paddle Boxes
@@ -30,7 +30,7 @@ player[1] = new Player();
 player[0].pad = p1;
 player[1].pad = p2;
 
-// pad array holds the players' paddle avatars for easy indexing
+// pad array holds the players' paddle avatars for 
 var pad = [];
 pad[0] = player[0].pad;
 pad[1] = player[1].pad;
@@ -43,6 +43,9 @@ ball.h = 20
 ball.vx = -2
 ball.vy = -2
 ball.color = `black`
+
+//score setup
+
 
 function main()
 {
@@ -89,15 +92,29 @@ function main()
         pad[0].y = c.height-pad[0].h/2
     }
 
+    //pad[1] (left paddle) collision with canvas bounds
+    if(pad[1].y < 0+pad[1].h/2)
+    {
+        pad[1].y = 0+pad[1].h/2
+    }
+    if(pad[1].y > c.height-pad[1].h/2)
+    {
+        pad[1].y = c.height-pad[1].h/2
+    }
     //ball collision 
     if(ball.x < 0)
     {
+        // ball left the screen: point for right-side player (score for right player)
+    player[1].score++;
+    console.log(`${player[0].score} | ${player[1].score}`);
         ball.x = c.width/2
-        ball.y  =c.height/2
+        ball.y  = c.height/2
     }
     if(ball.x > c.width)
     {
         //reset ball to center when it goes off the right side (score for left player)
+    player[0].score++;
+    console.log(`${player[0].score} | ${player[1].score}`);
         ball.x = c.width/2
         ball.y  = c.height/2
     }
