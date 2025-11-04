@@ -71,11 +71,10 @@ function main()
         pad[i].vy *= fy;
         pad[i].move();
     }
-
-    //ball movement
+//ball movement
     ball.move()
 
-    // paddle collision with canvas bounds (looped)
+// paddle collision with canvas bounds
     for (var i = 0; i < pad.length; i++)
     {
         if (pad[i].y < 0 + pad[i].h/2)
@@ -87,10 +86,10 @@ function main()
             pad[i].y = c.height - pad[i].h/2;
         }
     }
-    //ball collision 
+//ball collision 
     if(ball.x < 0)
     {
-        // ball left the screen: point for right-side player (score for right player)
+    // ball left the screen: point for right-side player (score for right player)
     player[1].score++;
     console.log(`${player[0].score} | ${player[1].score}`);
         ball.x = c.width/2
@@ -98,7 +97,7 @@ function main()
     }
     if(ball.x > c.width)
     {
-        //reset ball to center when it goes off the right side (score for left player)
+    //reset ball to center when it goes off the right side (score for left player)
     player[0].score++;
     console.log(`${player[0].score} | ${player[1].score}`);
         ball.x = c.width/2
@@ -116,7 +115,7 @@ function main()
        
     }
 
-    // paddle collisions (looped)
+// paddle collisions
     for (var i = 0; i < pad.length; i++)
     {
         if (ball.collide(pad[i]))

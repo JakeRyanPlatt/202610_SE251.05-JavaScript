@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PONG</title>
-    <link rel="stylesheet" href="pong.css">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        /* Inline helper for JS toggles */
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
     <canvas id="pong" width="800" height="800"></canvas>
@@ -14,5 +18,10 @@
     <script src="js/options.js"></script>
     <script src="js/users.js"></script>
     <script src="js/pong.js"></script>
+    <section id="options">
+        <h2>Options</h2>
+        <div class="sides">Side A</div>
+        <div class="sides">Side B</div>
+    </section>
 </body>
 </html>
