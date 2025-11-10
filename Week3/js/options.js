@@ -1,23 +1,18 @@
-function hideAllSections() {
-    const allSections = document.querySelectorAll('section');
-    allSections.forEach(section => {
-        section.style.display = 'none';
-    });   
-}
-
+const optionsBtn = document.getElementById('optionsBtn');
 const mySectionElement = document.getElementById('options');
-hideAllSections(); //Hide option section first
-
 const targetSelect = mySectionElement.querySelector('h2'); //select h2 outside event listener
-
 const sidesDivs = mySectionElement.querySelectorAll('.sides'); //select all divs w/ class sides 
-sidesDivs.forEach(div => {
-            div.classList.add('hidden'); //initially hide side divs 
 
-targetSelect.addEventListener('click', (e) => {
-        
-        }); 
-        sidesDivs.forEach(div => {
-                div.classList.toggle('hidden') // toggle hide       
-        });
-}); 
+optionsBtn.addEventListener('click', () => { //button toggle for all options
+    mySectionElement.classList.toggle('hidden');
+});
+
+sidesDivs.forEach(div => {
+    div.classList.add('hidden'); //initially hide side divs 
+});
+
+targetSelect.addEventListener('click', () => {
+    sidesDivs.forEach(div => {
+        div.classList.toggle('hidden');
+    });
+});
