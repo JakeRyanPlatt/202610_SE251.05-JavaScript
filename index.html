@@ -50,7 +50,7 @@
 
         .week-card h2 {
             color: #667eea;
-            margin-bottom: 15px;
+            border-radius: 15px;
             font-size: 1.8em;
             border-bottom: 3px solid #667eea;
             padding-bottom: 10px;
@@ -73,11 +73,18 @@
             transform: scale(1.05);
         }
 
-        table {
+        /* Tables used inside week cards should fit the card content area
+           and use cell padding for spacing so they don't overflow the card. */
+        .week-card table {
             width: 100%;
-            margin-top: 15px;
             border-collapse: collapse;
-            flex-grow: 1;
+            margin-top: 12px;
+            max-width: 100%;
+            overflow: auto;
+            background: transparent;
+                /* Use fixed table layout so columns respect the card width
+                    and long content wraps instead of forcing the table wider. */
+                table-layout: fixed;
         }
 
         th {
@@ -91,6 +98,8 @@
         td {
             padding: 10px;
             border-bottom: 1px solid #eee;
+            word-break: break-word;
+            overflow-wrap: anywhere;
         }
 
         tr:last-child td {
@@ -103,6 +112,7 @@
             border-radius: 3px;
             font-family: 'Courier New', monospace;
             color: #e83e8c;
+            white-space: normal; /* allow wrapping inside code blocks */
         }
     </style>
 </head>
