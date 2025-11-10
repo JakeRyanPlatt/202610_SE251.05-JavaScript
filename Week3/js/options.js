@@ -25,8 +25,8 @@ window.addEventListener('load', () => {
         });
     }
 
-    // Wire all color inputs with class 'fill' inside the options to the player models
-    const fillInputs = mySectionElement ? mySectionElement.querySelectorAll('input.fill[type="color"], input[type="color"].fill, input.fill') : [];
+    // queryselect fill inputs into section element fillInputs
+    const fillInputs = mySectionElement ? mySectionElement.querySelectorAll('input.fill[type="color"]') : [];
 
     fillInputs.forEach((input, i) => {
         // initialize input value from player data
@@ -57,6 +57,116 @@ window.addEventListener('load', () => {
 
             // update output display
             if (output) output.innerHTML = val;
+        });
+    });
+
+    // keyboard 'up' inputs (class 'u') - allow changing each player's up key
+    const uInputs = mySectionElement ? mySectionElement.querySelectorAll('input.u[type="text"]') : [];
+
+    uInputs.forEach((input, i) => {
+        // initialize input value from player data if available
+        try {
+            if (window.player && player[i] && player[i].keys && player[i].keys.u) {
+                input.value = player[i].keys.u;
+            }
+        } catch (e) { }
+
+        // find output element to display the key name
+        let output = null;
+        if (input.nextElementSibling && input.nextElementSibling.classList && input.nextElementSibling.classList.contains('output')) {
+            output = input.nextElementSibling;
+        } else {
+            const parent = input.closest('.controls');
+            if (parent) {
+                const controlGroup = input.closest('.control-group');
+                if (controlGroup) {
+                    output = controlGroup.querySelector('.output');
+                }
+            }
+        }
+
+        if (output && window.player && player[i] && player[i].keys) {
+            output.innerHTML = player[i].keys.u;
+        }
+
+        // when a key is pressed while the input is focused, capture the key name
+        input.addEventListener('keydown', (e) => {
+            e.preventDefault(); // prevent the default character input
+            const keyName = e.key;
+
+            console.log(`Player ${i + 1} UP key changed to: ${keyName}`);
+
+            // update the visible input
+            input.value = keyName;
+
+            // update the player model
+            if (window.player && player[i]) {
+                if (!player[i].keys) player[i].keys = {};
+                player[i].keys.u = keyName;
+            }
+
+            // update the output display
+            if (output) output.innerHTML = keyName;
+        });
+
+        // when focusing the input, pause the game so key presses change controls
+        input.addEventListener('focus', (e) => {
+            try { currentState = 'pause'; } catch (err) { /* ignore if currentState not defined yet */ }
+        });
+    });
+
+    // keyboard 'down' inputs (class 'd') - allow changing each player's down key
+    const dInputs = mySectionElement ? mySectionElement.querySelectorAll('input.d[type="text"]') : [];
+
+    dInputs.forEach((input, i) => {
+        // initialize input value from player data if available
+        try {
+            if (window.player && player[i] && player[i].keys && player[i].keys.d) {
+                input.value = player[i].keys.d;
+            }
+        } catch (e) { }
+
+        // find output element to display the key name
+        let output = null;
+        if (input.nextElementSibling && input.nextElementSibling.classList && input.nextElementSibling.classList.contains('output')) {
+            output = input.nextElementSibling;
+        } else {
+            const parent = input.closest('.controls');
+            if (parent) {
+                const controlGroup = input.closest('.control-group');
+                if (controlGroup) {
+                    output = controlGroup.querySelector('.output');
+                }
+            }
+        }
+
+        if (output && window.player && player[i] && player[i].keys) {
+            output.innerHTML = player[i].keys.d;
+        }
+
+        // when a key is pressed while the input is focused, capture the key name
+        input.addEventListener('keydown', (e) => {
+            e.preventDefault(); // prevent the default character input
+            const keyName = e.key;
+
+            console.log(`Player ${i + 1} DOWN key changed to: ${keyName}`);
+
+            // update the visible input
+            input.value = keyName;
+
+            // update the player model
+            if (window.player && player[i]) {
+                if (!player[i].keys) player[i].keys = {};
+                player[i].keys.d = keyName;
+            }
+
+            // update the output display
+            if (output) output.innerHTML = keyName;
+        });
+
+        // when focusing the input, pause the game so key presses change controls
+        input.addEventListener('focus', (e) => {
+            try { currentState = 'pause'; } catch (err) { /* ignore if currentState not defined yet */ }
         });
     });
 });

@@ -1,22 +1,22 @@
 //canvas and context
-var c = document.querySelector(`#pong`);
-var ctx = c.getContext(`2d`);
-var states = [];
-var o = [];
-var pad = [];
-var g = [];
-var goals = [];
-var sides = {
+let c = document.querySelector(`#pong`);
+let ctx = c.getContext(`2d`);
+let states = [];
+let o = [];
+let pad = [];
+let g = [];
+let goals = [];
+let sides = {
         top: c.height/2 + (c.height/2 * -1), 
         right: c.width/2 + (c.width/2 * 1), 
         bottom: c.height/2 + (c.height/2 * 1), 
         left: c.width/2 + (c.width/2 * -1)
     };
-var timer, ball, currentState;
-var scoreBoard;
-var player = [
+let timer, ball, currentState;
+let scoreBoard;
+player = [
     new User().setProps({h:150,  force:1, fill:`#ffff00`}),
-    new User().setProps({h:150,  force:1, fill:`#ffff00`, keys:{u:`ArrowUp`, d:`ArrowDown`, s:`ArrowLeft`}})
+    new User().setProps({h:150,  force:1, fill:`#ffff00`, keys:{u:"ArrowUp", d:"ArrowDown", s:"ArrowLeft"}})
 ]
 
 
