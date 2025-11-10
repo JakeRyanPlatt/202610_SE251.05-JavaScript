@@ -1,14 +1,23 @@
-/*toggle: when the Options H2 is clicked, toggle `.hidden` on all `.sides` */
+function hideAllSections() {
+    const allSections = document.querySelectorAll('section');
+    allSections.forEach(section => {
+        section.style.display = 'none';
+    });   
+}
 
-document.addEventListener(`Escape`, function () {
-    // Select the Options heading directly
-    var heading = document.querySelector(`#options h2`);
+const mySectionElement = document.getElementById('options');
+hideAllSections(); //Hide option section first
 
-    if (!heading) return; // nothing to attach to
+const targetSelect = mySectionElement.querySelector('h2'); //select h2 outside event listener
 
-    heading.addEventListener('click', function () {
-        var list = document.querySelectorAll('.sides');
-        if (!list || list.length === 0) return;
-        list.forEach(function (s) { s.classList.toggle('hidden'); });
-    });
-});
+const sidesDivs = mySectionElement.querySelectorAll('.sides'); //select all divs w/ class sides 
+sidesDivs.forEach(div => {
+            div.classList.add('hidden'); //initially hide side divs 
+
+targetSelect.addEventListener('click', (e) => {
+        
+        }); 
+        sidesDivs.forEach(div => {
+                div.classList.toggle('hidden') // toggle hide       
+        });
+}); 

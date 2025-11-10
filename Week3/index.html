@@ -7,7 +7,6 @@
     <title>PONG</title>
     <link rel="stylesheet" href="main.css">
     <style>
-        /* Inline helper for JS toggles */
         .hidden { display: none; }
     </style>
 </head>
@@ -18,7 +17,8 @@
     <script src="js/options.js"></script>
     <script src="js/users.js"></script>
     <script src="js/pong.js"></script>
-    <section id="options">
+    <button onclick="document.getElementById('options').style.display=`block`">Options</button>
+    <section id="options" style="display: none;">
         <h2>Options</h2>
         <div class="sides">Side A</div>
         <div class="sides">Side B</div>
