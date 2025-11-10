@@ -17,11 +17,21 @@
     <script src="js/options.js"></script>
     <script src="js/users.js"></script>
     <script src="js/pong.js"></script>
-    <button onclick="document.getElementById('options').style.display='block'">Options</button>
-    <section id="options" style="display: none;">
-        <h2>Options</h2>
-        <div class="sides">Side A</div>
-        <div class="sides">Side B</div>
+    <button id="optionsBtn">Options</button>
+    <section id="options" class="hidden">
+        <h2>Click Me for Color Options</h2>
+        <div class="sides">
+            <h3>Player 1 Pad Color</h3>
+            <label>Color</label>
+            <input class="fill" type="color">
+            <div class="output"></div>
+        </div>
+        <div class="sides">
+            <h3>Player 2 Pad Color</h3>
+            <label>Color</label>
+            <input class="fill" type="color">
+            <div class="output"></div>
+        </div>
     </section>
 </body>
 </html>
