@@ -1,10 +1,8 @@
-/* Simple: toggle `hidden` on all `.sides` elements when the options H2 is clicked */
+/*toggle: when the Options H2 is clicked, toggle `.hidden` on all `.sides` */
 
-document.addEventListener('DOMContentLoaded', function () {
-    var heading = document.querySelector('#options h2') ||
-                  document.querySelector('.options h2') ||
-                  document.querySelector('section#options h2') ||
-                  document.querySelector('h2.options');
+document.addEventListener(`Escape`, function () {
+    // Select the Options heading directly
+    var heading = document.querySelector(`#options h2`);
 
     if (!heading) return; // nothing to attach to
 
