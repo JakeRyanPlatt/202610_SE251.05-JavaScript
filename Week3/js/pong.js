@@ -13,7 +13,6 @@ let sides = {
         left: c.width/2 + (c.width/2 * -1)
     };
 let timer, ball, currentState;
-let scoreBoard;
 player = [
     new User().setProps({h:150,  force:1, fill:`#ffff00`}),
     new User().setProps({h:150,  force:1, fill:`#ffff00`, keys:{u:"ArrowUp", d:"ArrowDown", s:"ArrowLeft"}})
@@ -39,15 +38,14 @@ function init()
     o[2] = new Box().setProps({w:20, h:20, vx:-2, vy:0, fill:`rgb(255,255,255)`});
     //goals 1 and 2
     o[3] = new Box().setProps({x:o[0].x + ((c.width +10 ) * o[0].dir), h:c.height, w:20, fill:`green`});
-    o[4] = new Box().setProps({x:o[1].x + ((c.width +10 ) * o[1].dir), h:c.height, w:20});
+    o[4] = new Box().setProps({x:o[1].x + ((c.width +10 ) * o[1].dir), h:c.height, w:20, fill:`teal`});
     
     player[0].pad = o[0];
     player[1].pad = o[1];
-
-    pad = [o[0], o[1]]
-    ball = o[2]
-    goals = [o[3], o[4]]
-    scoreBoard = document.querySelectorAll(`#score div p`);
+    pad = [o[0], o[1]];
+    ball = o[2];
+    goals = [o[3], o[4]];
+    scoreBoard = document.querySelectorAll("#scoreboard div p");
     currentState = `game`;
     //timer to make the game run at 60fps
     clearTimeout(timer);
@@ -116,8 +114,11 @@ states[`game`] = function()
         if(ball.collide(goals[i]))
         {
             ball.x = c.width/2;
-            player[i].score++;
-            scoreBoard[i].innerHTML = player[i].score;
+            let scoringPlayer = 1 - i;
+            player[scoringPlayer].score++;
+            console.log("Goal scored! Player", scoringPlayer + 1, 'now has', player[scoringPlayer].score, 'points');
+            console.log("scoreBoard element:", scoreBoard[scoringPlayer]);
+            scoreBoard[scoringPlayer].innerHTML = player[scoringPlayer].score
         }
 
         if(ball.collide(pad[i]))

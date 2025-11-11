@@ -8,16 +8,22 @@
     <link rel="stylesheet" href="main.css">
     <style>
         .hidden { display: none; }
+        .shown { display: table-row-group;}
     </style>
 </head>
 <body>
     <canvas id="pong" width="800" height="800"></canvas>
-    <script src="js/box.js"></script>
-    <script src="js/keyboard.js"></script>
-    <script src="js/options.js"></script>
-    <script src="js/users.js"></script>
-    <script src="js/pong.js"></script>
-    <button id="optionsBtn">Options</button>
+    <section id="scoreboard"class="shown">
+        <h1>Scoreboard</h1>
+        <div>
+            <label>Player 1</label>
+            <p>0</p>
+        </div>
+        <div>
+            <label>Player 2</label>
+            <p>0</p>
+        </div>
+    </section>
     <section id="options" class="hidden">
         <h2>Click Me for Color Options</h2>
         <div class="sides">
@@ -61,5 +67,11 @@
             </div>
         </div>
     </section>
+    <script src="js/box.js"></script>
+    <script src="js/keyboard.js"></script>
+    <script src="js/options.js"></script>
+    <script src="js/users.js"></script>
+    <script src="js/pong.js"></script>
+    <button id="optionsBtn">Options</button>
 </body>
 </html>
