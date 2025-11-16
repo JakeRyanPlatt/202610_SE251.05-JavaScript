@@ -169,4 +169,37 @@ window.addEventListener('load', () => {
             try { currentState = 'pause'; } catch (err) { /* ignore if currentState not defined yet */ }
         });
     });
+
+    
+
+    const strokeInputs = mySectionElement ? mySectionElement.querySelectorAll('input.stroke[type="color"]') : [];
+
+    strokeInputs.forEach((input, i) =>{
+        if(window.player && player[i] && player[i].stroke) {
+            try {input.value = player[i].stroke;} catch (e) {}
+        }
+        let output = null;
+        if (input.nextElementSibling && input.nextElementSibling.classList && input.nextElementSibling.classList.contains('output')){
+            output = input.nextElementSibling;
+        } else {
+            const side = input.closest('.sides')
+            if (side) output = side.querySelector('output');
+        }
+
+        if (output && window.player && player[i]) {
+            output.innerHTML = player[i].stroke;
+        }
+
+        input.addEventListener('input', e => {
+            const val = e.target.value;
+            // here we update the player paddles
+            if (window.player && player[i]){
+                player[i].stroke = val;
+                if (player[i].pad) player[i].pad.stroke = val;
+            }
+            // update output display
+            if (output) output.innerHTML = val;   
+
+        });
+    });
 });

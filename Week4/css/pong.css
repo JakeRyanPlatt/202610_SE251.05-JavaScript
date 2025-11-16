@@ -21,9 +21,10 @@ canvas{
 #options{
     margin-left:24px;
 }
-.sides{ /* styles for options sides (kept empty intentionally) */ }
+
 .hidden{
-    display: none;
+    height:0;
+    overflow-y:hidden;
 }
 .op{
     width: 400px;

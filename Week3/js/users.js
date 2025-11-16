@@ -13,7 +13,7 @@ class User
         this.force=1;
         this.power=5;
         this.fy=.85;
-        this.keys={u:`w`, d:`s`, s:`d`};
+        this.keys={u:"w", d:"s", s:"d"}
         return this;
     }
 

@@ -1,11 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SE251.05 JavaScript</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<title>Week 2 Lab</title>
+<link type="text/css" rel="stylesheet" href="style.css" />
+<script type="text/javascript" src="week2.js"></script>
+
 </head>
+
 <body>
-    <h1>This page is blank</h1>
+
+<div id="form" class="form-group">
+	
+    <form name="info">
+    <p>
+    First Name <br />
+    <input id="first-name" name="first-name" type="text" required> <span id="fn-error"></span>
+    </p>
+    
+    <p>
+   	Last Name <br />
+    <input type="text" id="last-name"/> <span id="ln-error"></span>
+    </p>
+    
+    <p>
+   	Email <br />
+    <input type="email" id="email"/> <span id="email-error"></span>
+    </p>
+
+     <p>
+   	Confirm Email <br />
+    <input type="email" id="email-confirm"/> <span id="email-error"></span>
+    </p>
+    
+    <p>
+   	Phone Number <br />
+    <input type="text" id="phone"/> <span id="phone-error"></span>
+    </p>
+    
+    <input type="button" value="submit" onclick="" />
+    </form>
+
+</div>
+
+<div id="confirmation" class="confirmation">
+	<h1>Confirmation</h1>
+    <p id="info">
+    </p>
+</div>
+
 </body>
+</html>
