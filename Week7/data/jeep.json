@@ -1,0 +1,22 @@
+[
+  {
+    "make": "Ford",
+    "model": "Mustang",
+    "year": "2018"
+  },
+  {
+    "make": "Jeep",
+    "model": "Wrangler",
+    "year": "1945"
+  },
+  {
+    "make": "Chevy",
+    "model": "Malibu",
+    "year": "2017"
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": "2008"
+  }
+]

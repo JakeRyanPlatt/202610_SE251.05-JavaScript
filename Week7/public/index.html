@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        <input type="text" name="make" value="Chevy"><br>
+        <input type="text" name="model" value="Corvette"><br>
+        <input type="number" name="year" maxlength="4" value="2010"><br>
+        <button>Submit</button>
+  
+    <div id="output">
+
+    </div>
+    <script>
+
+    window.addEventListener(`load`, load)
+
+    async function load(e){
+        const res = await fetch("/jeep");
+        const data = await res.json();
+
+        // create array of {item, idx} so we can sort for display
+        const indexed = data.map((item, idx) => ({ item, idx }));
+        const sortedIndexed = indexed.sort((a, b) => (b.item.year - a.item.year));
+
+        var output = document.querySelector(`#output`);
+        var message =``
+        for(let entry of sortedIndexed)
+        {
+            const i = entry.idx;
+            const item = entry.item;
+            message += `<div class="item">`
+            for(let prop in item)
+            {
+                message += `<p>${prop}:${item[prop]}</p>`
+            }
+            // add a delete button that includes the original index
+            message += `<button class="delete" data-index="${i}">Delete</button>`
+            message += `</div>`
+        }
+
+        output.innerHTML = message
+
+        // attach event listeners to each delete button
+        const buttons = document.querySelectorAll('.delete')
+        buttons.forEach(b => {
+            b.addEventListener('click', async (e) => {
+                const index = e.target.dataset.index
+                await fetch('/delete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                    body: JSON.stringify({ index: index })
+                })
+                load()
+            })
+        })
+
+    }
+
+
+    document.querySelector(`button`).addEventListener(`click`, async (e)=>{
+
+       await fetch("/jeep", {
+            method: "POST",
+            body: JSON.stringify({
+                make: document.querySelector(`input[name="make"]`).value,
+                model: document.querySelector(`input[name="model"]`).value,
+                year: document.querySelector(`input[name="year"]`).value
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+
+        load()
+    })    
+   
+    </script>
+</body>
+</html>
