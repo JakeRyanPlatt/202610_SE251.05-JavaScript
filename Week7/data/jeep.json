@@ -1,1 +1,26 @@
+<<<<<<< HEAD
 [{"make":"Chevy","model":"Corvette","year":"2010"},{"make":"Chevy","model":"Corvette","year":"2010"},{"make":"bobby","model":"Corvette","year":"2010"},{"make":"Ford","model":"Mustang","year":"2018"},{"make":"Jeep","model":"Wrangler","year":"1945"}]
+=======
+[
+  {
+    "make": "Ford",
+    "model": "Mustang",
+    "year": "2018"
+  },
+  {
+    "make": "Jeep",
+    "model": "Wrangler",
+    "year": "1945"
+  },
+  {
+    "make": "Chevy",
+    "model": "Malibu",
+    "year": "2017"
+  },
+  {
+    "make": "Ford",
+    "model": "Focus",
+    "year": "2008"
+  }
+]
+>>>>>>> 3f3eb2ceacdf4ed5fae31a93be73321e40f2e3a9
