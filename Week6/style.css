@@ -24,3 +24,17 @@
 	display:none;
 }
 
+.flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+span {
+	color: red;
+	font-size: 12px;
+}
+
+.error-label{
+	color: red;
+}
